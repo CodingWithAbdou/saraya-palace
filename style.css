@@ -50,7 +50,18 @@ body {
     scroll-behavior: smooth;
     overflow-x: hidden;
 }
+body::-webkit-scrollbar {
+    width: 1em;
+}
 
+body::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+body::-webkit-scrollbar-thumb {
+    background-color: var(--brown);
+    /* outline: 1px solid slategrey; */
+}
 /*
 ****
 * Classes
@@ -302,9 +313,57 @@ body {
 .services .header_section {
     color: var(--blue);
     background: var(--white);
+    margin-bottom: 7rem;
 }
 .services .header_section .corn {
     background: var(--white);
+}
+.services > div > div > div > div {
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding-block: 2rem;
+    margin: 1rem;
+    width: 300px;
+    box-shadow: 0 0 4px 0px #ddd;
+    gap: 1rem;
+    background: var(--white);
+    cursor: pointer;
+    transition: var(--transition-1);
+}
+.services > div > div > div > div:hover::after {
+    top: 0px;
+    left: 0px;
+}
+.services > div > div > div > div:hover {
+    background: transparent;
+    box-shadow: 0 0 4px 0px #ddd;
+}
+.services > div > div > div > div:hover h3 {
+    color: var(--white);
+}
+.services > div > div > div > div:hover img {
+    transform: rotateY(360deg);
+}
+
+.services > div > div > div > div::after {
+    content: "";
+    position: absolute;
+    top: -20px;
+    left: -20px;
+    width: 100%;
+    height: 100%;
+    background: var(--blue);
+    z-index: -1;
+    transition: var(--transition-1);
+}
+.services > div > div > div > div img {
+    transition: var(--transition-1);
+}
+.services > div > div > div > div h3 {
+    color: var(--blue);
+    transition: var(--transition-1);
 }
 /*
 ****
@@ -315,14 +374,56 @@ body {
     padding-block: 7rem;
     position: relative;
     background: var(--blue);
-    z-index: 1;
+    z-index: 3;
     color: var(--white);
 }
-
+.advantages .header_section {
+    margin-bottom: 7rem;
+}
 .advantages .cover_img {
     top: 180px;
 }
+.box_advantag {
+    width: 320px;
+    position: relative;
+    transition: var(--transition-1);
+}
 
+.box_advantag::before,
+.box_advantag::after {
+    content: "";
+    background-color: transparent;
+    position: absolute;
+    transition: var(--transition-1);
+}
+
+.box_advantag::before {
+    width: 50px;
+    height: 50px;
+    top: -3px;
+    right: -3px;
+    border-top: 3px solid var(--brown);
+    border-right: 3px solid var(--brown);
+}
+
+.box_advantag::after {
+    width: calc(100% + 3px);
+    height: calc(100% + 3px);
+    border-bottom: 3px solid var(--brown);
+    border-left: 3px solid var(--brown);
+    bottom: -3px;
+    left: -3px;
+}
+.box_advantag:hover::before {
+    width: calc(100% + 6px);
+    height: calc(100% + 6px);
+}
+.box_advantag:hover {
+    transform: scale(1.1);
+}
+.box_advantag h3 {
+    padding: 1rem 0.5rem;
+}
 /*
 ****
 * achievement
@@ -349,6 +450,23 @@ body {
     color: var(--green);
 }
 
+.achievement > div > div > div > div {
+    width: 350px;
+    height: 620px;
+    box-shadow: 0 0 4px 0 #ddd;
+    overflow: hidden;
+    border-radius: 4px;
+    position: relative;
+    background: var(--white);
+    transition: var(--transition-1);
+}
+.achievement > div > div > div > div:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 0 4px 2px #ddd;
+}
+.achievement > div > div > div > div h3 {
+    padding: 1rem;
+}
 /*
 ****
 * partner
@@ -356,13 +474,20 @@ body {
 */
 
 .partner {
-    padding-block: 6rem 12rem;
+    padding-block: 8 rem;
     position: relative;
-    background-image: url("./images/background.png");
-    background-size: cover;
+}
+.partner::after {
+    content: "";
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: #10524e70;
 }
 .video-backgound {
-    display: none;
+    /* display: none; */
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -372,10 +497,14 @@ body {
     z-index: -1;
 }
 .partner h2 {
-    color: var(--blue);
+    position: relative;
+    z-index: 3;
+    color: #072c52;
     font-weight: bold;
+    margin-top: -1rem;
 }
-.partner .cover_img {
+.partner h2 span {
+    color: #397e2f;
 }
 .partner_img {
     position: relative;
@@ -400,11 +529,62 @@ body {
 .client .header_section {
     color: var(--blue);
     background: var(--white);
+    margin-bottom: 7rem;
 }
 .client .header_section .corn {
     background: var(--white);
 }
+.client .row .cover {
+    overflow: hidden;
+    width: 250px;
+    height: 250px;
+    border-radius: 40px 0 40px;
+}
+.client .row .cover img {
+    width: 250px;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 40px 0 40px;
+    border: 1px solid #ccc;
+}
+.client .row > div > div {
+    position: relative;
+    width: fit-content;
+    /* cursor: pointer; */
+}
+.client .row h3 {
+    width: 125px;
+    height: 125px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 50%;
+    right: -72.5px;
+    transform: translateY(-50%) rotate(-360deg);
+    background: linear-gradient(
+        45deg,
+        rgba(206, 174, 117, 1) 0%,
+        rgba(16, 82, 78, 1) 100%
+    );
 
+    border-radius: 40px 0 40px;
+    color: var(--white);
+    transition: all 0.5s cubic-bezier(0.55, 0, 0.1, 1),
+        letter-spacing 1.5s ease-out;
+}
+.client .row > div > div:hover h3 {
+    transform: translateY(-50%) rotate(0deg);
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        45deg,
+        rgba(206, 174, 117, 80%) 0%,
+        rgba(16, 82, 78, 80%) 100%
+    );
+    letter-spacing: 0.2rem;
+}
 /*
 ****
 * image
